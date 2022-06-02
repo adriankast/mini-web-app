@@ -1,0 +1,21 @@
+<html>
+  <head></head>
+  <body>
+    <button id="onOff">loading...</button>
+    <script>
+      const fetchServer = (toggle) => {
+        fetch("/api/button", { method: toggle ? "POST" : "GET" }).then((res) =>
+          res.text().then((content) => {
+            document.getElementById("onOff").innerHTML = content;
+          })
+        );
+      };
+
+      fetchServer(false);
+
+      document.getElementById("onOff").addEventListener("click", () => {
+        fetchServer(true);
+      });
+    </script>
+  </body>
+</html>
